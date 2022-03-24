@@ -1,0 +1,25 @@
+-
+ name: "ma premiere automatisation" 
+ hosts: noeud1,noeud2
+ tasks:
+  - name: "installer apache"
+    yum:
+     name: httpd
+     state: present
+   
+  - name: "démarrer le service apache"
+    service:
+     name: httpd
+     state: started
+     
+  - name: "créer le répertoire /formation"
+    file:
+     path: /formation
+     state: directory
+     mode: '0755'
+ 
+  - name: "copier un fichier de /etc/httpd/conf/httpd.conf"
+    copy: src=/etc/httpd/conf/httpd.conf dest=/formation
+  
+#  - name: "afficher à l'écran le message de FIN"
+#    script: /home/osboxes/test-project/afficher.sh 
